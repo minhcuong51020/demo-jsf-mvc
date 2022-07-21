@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+	<header class="header-admin">
+	    <!-- desktop -->
+	    <div class="d-none d-sm-none d-md-none d-lg-block container-fluid pl-0 pr-0 shadow">
+	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	            <a class="navbar-brand">
+	            	<h:graphicImage name="logos.png" library="image" width="200px"></h:graphicImage>
+	            </a>
+	            <button class="navbar-toggler" type="button" data-toggle="collapse"
+	                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+	                    aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	
+	            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	                <ul class="navbar-nav mr-auto">
+	                    <li class="nav-item active">
+	                        <a class="nav-link">Trang chủ</a>
+	                    </li>
+	                </ul>
+	                <div class="my-2 my-lg-0 dropdown user">
+	                    <a class="nav-link dropdown-toggle" href="#" id="info-user" role="button"
+	                       data-toggle="dropdown" aria-expanded="false">
+	                        <i class="fas fa-user-circle"></i>
+	                        <span>Cuong</span>
+	                    </a>
+	                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="info-user">
+	                        <a class="dropdown-item">Đăng xuất</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </nav>
+	    </div>
+	    <!-- mobile -->
+	    <div class="d-md-block d-lg-none container-fluid pl-0 pr-0 shadow header-admin-mobile">
+	        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	            <a class="navbar-brand">
+	                <h:graphicImage name="logos.png" library="image" width="200px"></h:graphicImage>
+	            </a>
+	            <div class="my-md-0 dropdown user">
+	                <a class="nav-link dropdown-toggle" href="#" id="info-user-m" role="button"
+	                   data-toggle="dropdown" aria-expanded="false">
+	                    <i class="fas fa-user-circle"></i>
+	                    <span>Cuong</span>
+	                </a>
+	                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="info-user-m">
+	                    <a class="dropdown-item" >Đăng xuất</a>
+	                </div>
+	            </div>
+	            <button class="navbar-toggler" type="button" data-toggle="collapse"
+	                    data-target="#collpase-mobile" aria-controls="collpase-mobile" aria-expanded="false"
+	                    aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse" id="collpase-mobile">
+	                <ul class="navbar-nav ul-all">
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="#book-admin" data-toggle="collapse" aria-expanded="false">
+	                            Sách</a>
+	                        <ul class="collapse" id="book-admin">
+	                            <li class="nav-item">
+	                                <a class="nav-link">Thêm sách</a>
+	                               
+	                            </li>
+	                            <li class="nav-item">
+	                                <a class="nav-link">Danh sách sách</a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="#orders-admin" data-toggle="collapse" aria-expanded="false">
+	                            Đơn hàng</a>
+	                        <ul class="collapse" id="orders-admin">
+	                            <li class="nav-item">
+	                                <a class="nav-link">Đơn hàng hoàn thành</a>
+	                            </li>
+	                            <li class="nav-item">
+	                                <a class="nav-link">Đơn hàng chờ xử lý</a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="#category-admin" data-toggle="collapse" aria-expanded="false">
+	                            Danh mục</a>
+	                        <ul class="collapse" id="category-admin">
+	                            <li class="nav-item">
+	                                <h:link value="Thêm danh mụcs" outcome="category-add?faces-redirect=true" styleClass="nav-link"/>
+	                            </li>
+	                            <li class="nav-item">
+	                            	<h:link value="Danh sách danh mục" outcome="category-list?faces-redirect=true" styleClass="nav-link"/>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="#author-admin" data-toggle="collapse" aria-expanded="false">
+	                            Tác giả</a>
+	                        <ul class="collapse" id="author-admin">
+	                            <li class="nav-item">
+	                                <a class="nav-link">Thêm tác giả</a>
+	                            </li>
+	                            <li class="nav-item">
+	                                <a class="nav-link">Danh sách tác giả</a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="#publisher-admin" data-toggle="collapse" aria-expanded="false">
+	                            Nhà xuất bản</a>
+	                        <ul class="collapse" id="publisher-admin">
+	                            <li class="nav-item">
+	                                <a class="nav-link">Thêm nhà xuất bản</a>
+	                            </li>
+	                            <li class="nav-item">
+	                                <a class="nav-link">Danh sách nhà xuất bản</a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link" href="#slider-admin" data-toggle="collapse" aria-expanded="false">
+	                            Sự kiện</a>
+	                        <ul class="collapse" id="slider-admin">
+	                            <li class="nav-item">
+	                                <a class="nav-link">Thêm sự kiện</a>
+	                            </li>
+	                            <li class="nav-item">
+	                                <a class="nav-link">Danh sách sự kiện</a>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                </ul>
+	            </div>
+	        </nav>
+	    </div>
+	</header>
+	
+</ui:composition>

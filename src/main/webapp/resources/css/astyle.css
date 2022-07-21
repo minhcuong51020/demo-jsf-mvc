@@ -1,0 +1,49 @@
+.content-right {
+    background-color: #f0f0f0;
+}
+
+form input {
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+#orders-admin,
+#book-admin,
+#category-admin,
+#slider-admin,
+#publisher-admin,
+#author-admin {
+    list-style: none;
+}
+
+.ul-all>li>a{
+    color: #4272d7;
+    font-size: 18px;
+}
+
+.user a {
+    color: #333;
+}
+
+.header-admin-mobile .navbar .nav-link{
+    color: #333;
+}
+
+.edit-table {
+    text-decoration: none;
+}
+
+.delete-table {
+    text-decoration: none;
+}
+
+.edit-table:hover,
+.delete-table:hover {
+    text-decoration: none;
+    color: rgb(248,17,17,0.5);
+}
+
+.title-crud {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,23 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+	<url-mapping id="home">
+		<pattern value="/" />
+		<view-id value="/app/home/index.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="category">
+		<pattern value="/categories" />
+		<view-id value="/app/category/category-list.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="book">
+		<pattern value="/books" />
+		<view-id value="/app/book/book-list.xhtml" />
+	</url-mapping>
+
+	
+
+</pretty-config>

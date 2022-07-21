@@ -1,0 +1,151 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/layout/admin/base.xhtml">
+
+	<ui:define name="title">
+		<title>Quản lý danh mục</title>
+	</ui:define>
+
+	<ui:define name="content-right">
+		<h:form id="insertEditForm">
+			<p:dialog widgetVar="dlgInfor" header="Thông tin chi tiết"
+				modal="true" id="dlgInfor" showEffect="clip" hideEffect="drop"
+				height="50%" width="80%" resizable="false" styleClass="ui-noborder">
+				<p:ajax event="close">
+					<p:resetInput target=":insertEditForm" />
+				</p:ajax>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:messages id="mainMessage" showDetail="true" autoUpdate="true"
+							closable="true" />
+					</div>
+				</div>
+				<p:panel id="pnlInfo">
+					<div class="ui-fluid">
+						<div class="p-field p-12">
+							<label for="name">Tên danh mục</label>
+							<p:inputText id="name" value="#{categoryController.newObj.name}"
+								required="true" requiredMessage="Không được để trống"
+								styleClass="p-12" />
+						</div>
+						<div class="p-field p-12">
+							<label for="isActive">Trạng thái</label>
+							<p:selectOneMenu id="isActive"
+								value="#{categoryController.newObj.isActive}"
+								styleClass="ui-grid-col-12">
+								<f:selectItems var="status" value="#{statusController.status}"
+									itemValue="#{status.key}" itemLabel="#{status.value}" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="btn-save-and-search">
+						<p:commandButton value="Thêm mới" class="p-mt-4 p-mr-2"
+							action="#{categoryController.saveOrUpdate}"
+							disabled="#{categoryController.isEdit}"
+							update=":insertEditForm:pnlInfo, :insertEditForm:mainMessage">
+						</p:commandButton>
+							
+						<p:commandButton value="Cập nhật" class="p-mt-4 p-mr-2"
+							disabled="#{!categoryController.isEdit}"
+							actionListener="#{categoryController.saveOrUpdate}"
+							update=":insertEditForm:pnlInfo, :insertEditForm:mainMessage" />
+							
+						<p:commandButton value="Đóng" process="@this"
+							onclick="PF('dlgInfor').hide()"
+							action="categoryController.clear()" />
+					</div>
+				</p:panel>
+			</p:dialog>
+		</h:form>
+
+		<div
+			class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+			<div class="list-item ml-2 mr-2 mt-2">
+				<div class="mt-2 mb-2">
+					<h:form id="search">
+						<p:panel header="Tìm kiếm" toggleable="true" styleClass="p-0">
+							<div class="ui-g">
+								<div class="ui-g-2">
+									<p:outputLabel value="Tên danh mục" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{categoryController.searchObj.name}" />
+								</div>
+
+								<div class="ui-g-2">
+									<p:outputLabel value="Trạng thái" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{categoryController.searchObj.isActive}" />
+								</div>
+							</div>
+
+							<div class="ui-g">
+								<p:commandButton id="cmdAdd" styleClass="p-mr-3"
+									action="#{categoryController.clear}" update=":insertEditForm"
+									oncomplete="PF('dlgInfor').show()" value="Thêm mới" />
+								<p:commandButton value="Tìm kiếm" class="ui-priority-primary" 
+									actionListener="#{categoryController.search}" update=":form:objectTable"/>
+							</div>
+						</p:panel>
+
+					</h:form>
+				</div>
+
+				<h2 class="title-crud text-center text-primary">Danh sách danh
+					mục</h2>
+
+				<div class="table-all table-responsive"
+					style="background-color: #fff;">
+					<h:form id="form">
+						<p:dataTable var="obj" value="#{categoryController.lazyDataModel}"
+							lazy="true" rowIndexVar="rowIndex" paginator="true" rows="5"
+							id="objectTable" paginatorPosition="bottom">
+
+							<p:column headerText="STT">
+								<h:outputText value="#{rowIndex + 1}" />
+							</p:column>
+
+							<p:column headerText="Tên danh mục">
+								<h:outputText value="#{obj.name}" />
+							</p:column>
+
+							<p:column headerText="Trạng thái">
+								<h:outputText value="#{obj.isActive}" />
+							</p:column>
+
+							<p:column style="text-align: center" headerText="Cập nhật">
+								<p:commandLink id="cmdEdit"
+									action="#{categoryController.prepareEdit}"
+									update=":insertEditForm" oncomplete="PF('dlgInfor').show()">
+									<p:resetInput target=":insertEditForm" />
+									<f:setPropertyActionListener
+										target="#{categoryController.selectedObj}" value="#{obj}" />
+									<i class="fa fa-fw fa-edit" style="color: red;"></i>
+								</p:commandLink>
+							</p:column>
+
+							<p:column style="text-align: center" headerText="Xóa">
+								<p:commandLink id="cmdDelete"
+									actionListener="#{categoryController.delete(obj)}"
+									update=":form, :form:objectTable">
+									<p:confirm header="Xác nhận" message="Bạn thực sự muốn xóa ?"
+										icon="ui-icon-alert" />
+									<i class="fa fa-fw fa-remove" style="color: red;"></i>
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Yes" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="No" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

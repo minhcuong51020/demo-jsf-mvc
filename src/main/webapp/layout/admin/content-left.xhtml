@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<div class="d-none d-lg-block col-lg-3 p-4">
+	    <ul class="navbar-nav ul-all">
+	        <li class="nav-item">
+	            <a class="nav-link" href="#book-admin" data-toggle="collapse" aria-expanded="false">
+	                Sách</a>
+	            <ul class="collapse" id="book-admin">
+	                <li class="nav-item">
+                       	<h:link value="Thêm sách" outcome="book-add?faces-redirect=true" styleClass="nav-link"/>
+                   	</li>
+                   	<li class="nav-item">
+                   		<h:link value="Danh sách sách" outcome="book-list?faces-redirect=true" styleClass="nav-link"/>
+                   	</li>
+	            </ul>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" href="#orders-admin" data-toggle="collapse" aria-expanded="false">
+	                Đơn hàng</a>
+	            <ul class="collapse" id="orders-admin">
+	                <li class="nav-item">
+	                    <a class="nav-link">Đơn hàng hoàn thành</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link">Đơn hàng chờ xử lý</a>
+	                </li>
+	            </ul>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" href="#category-admin" data-toggle="collapse" aria-expanded="false">
+	                Danh mục</a>
+	            <ul class="collapse" id="category-admin">
+	                <li class="nav-item">
+                       	<h:link value="Thêm danh mục" outcome="category-add?faces-redirect=true" styleClass="nav-link"/>
+                   	</li>
+                   	<li class="nav-item">
+                   		<h:link value="Danh sách danh mục" outcome="category-list?faces-redirect=true" styleClass="nav-link"/>
+                   	</li>
+	            </ul>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" href="#author-admin" data-toggle="collapse" aria-expanded="false">
+	                Tác giả</a>
+	            <ul class="collapse" id="author-admin">
+	                <li class="nav-item">
+	                    <a class="nav-link">Thêm tác giả</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link">Danh sách tác giả</a>
+	                </li>
+	            </ul>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" href="#publisher-admin" data-toggle="collapse" aria-expanded="false">
+	                Nhà xuất bản</a>
+	            <ul class="collapse" id="publisher-admin">
+	                <li class="nav-item">
+	                    <a class="nav-link">Thêm nhà xuất bản</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link">Danh sách nhà xuất bản</a>
+	                </li>
+	            </ul>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" href="#slider-admin" data-toggle="collapse" aria-expanded="false">
+	                Sự kiện</a>
+	            <ul class="collapse" id="slider-admin">
+	                <li class="nav-item">
+	                    <a class="nav-link">Thêm sự kiện</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link">Danh sách sự kiện</a>
+	                </li>
+	            </ul>
+	        </li>
+	    </ul>
+	</div>
+	
+</ui:composition>

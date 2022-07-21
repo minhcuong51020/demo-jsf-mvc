@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/Xhtml; charset=UTF-8"/>
+	<ui:insert name="title">
+		<title></title>
+	</ui:insert>
+	<ui:insert name="library">
+		<h:outputStylesheet name="astyle.css" library="css" />
+		<h:outputStylesheet name="bootstrap.min.css" library="css" />
+		<h:outputStylesheet name="primeflex.min.css" library="css" />
+		<h:outputScript name="bootstrap.min.js" library="js" />
+	</ui:insert>
+</h:head>
+
+<h:body>
+
+	<ui:insert name="header">
+		<ui:include src="header.xhtml"></ui:include>
+	</ui:insert>
+
+	<div class="content-admin">
+	    <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+            	<ui:include src="content-left.xhtml"></ui:include>
+            	<ui:insert name="content-right">
+            		<ui:include src="content-right.xhtml"></ui:include>
+            	</ui:insert>
+            </div>
+	    </div>
+    </div>
+		
+
+	<ui:insert name="footer">
+		<ui:include src="footer.xhtml"></ui:include>
+	</ui:insert>
+
+</h:body>
+
+</html>

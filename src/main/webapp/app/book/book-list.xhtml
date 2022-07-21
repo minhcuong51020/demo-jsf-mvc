@@ -1,0 +1,209 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/layout/admin/base.xhtml">
+	<ui:define name="content-right">
+	
+		<h:form id="insertEditForm" enctype="multipart/form-data">
+			<p:dialog widgetVar="dlgInfor" header="Thông tin chi tiếts" height="100%"
+				modal="true" id="dlgInfor" showEffect="clip" hideEffect="drop" responsive="true" positionType="absolute"
+				width="90%" resizable="true" styleClass="ui-noborder" blockScroll= "true" draggable="false" >
+				<p:ajax event="close">
+					<p:resetInput target=":insertEditForm" />
+				</p:ajax>
+				<div class="ui-g">
+					<div class="ui-g-12">
+						<p:messages id="mainMessage" showDetail="true" autoUpdate="true"
+							closable="true" />
+					</div>
+				</div>
+				<p:panel id="pnlInfo">
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<label for="title">Tên sách</label>
+							<p:inputText id="title" value="#{bookController.newObj.title}"
+								required="true" requiredMessage="Không được để trống"
+								styleClass="p-12" />
+							<p:messages for="title" />
+						</div>
+						<div class="p-field p-col">
+							<label for="category_id">Thể loại</label>
+							<p:selectOneMenu id="category_id"
+								value="#{bookController.newObj.category_id}" styleClass="ui-grid-col-12">
+								<f:selectItems var="category" value="#{categoryController.findAll()}"
+									itemValue="#{category.id}" itemLabel="#{category.name}" styleClass="ui-grid-col-12" />
+							</p:selectOneMenu>
+						</div>
+						<div class="p-field p-col">
+							<label for="author_id">Tác giả</label>
+							<p:selectOneMenu id="author_id"
+								value="#{bookController.newObj.author_id}" styleClass="ui-grid-col-12">
+								<f:selectItems var="author" value="#{authorController.findAll()}"
+									itemValue="#{author.id}" itemLabel="#{author.name}" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<label for="publisher_id">Nhà xuất bản</label>
+							<p:selectOneMenu id="publisher_id"
+								value="#{bookController.newObj.publisher_id}" styleClass="ui-grid-col-12">
+								<f:selectItems var="publisher" value="#{publisherController.findAll()}"
+									itemValue="#{publisher.id}" itemLabel="#{publisher.name}" />
+							</p:selectOneMenu>
+						</div>
+						<div class="p-field p-col">
+							<label for="isbn">ISBN</label>
+							<p:inputText id="isbn" value="#{bookController.newObj.isbn}"
+								required="true" requiredMessage="Không được để trống"
+								styleClass="p-12" />
+							<p:messages for="isbn" />
+						</div>
+						<div class="p-field p-col">
+							<label for="price">Giá</label>
+							<p:inputNumber id="price" value="#{bookController.newObj.price}" 
+									symbol=" VNĐ" symbolPosition="s" styleClass="p-12" decimalPlaces="0"/>
+							<p:messages for="price" />
+						</div>
+					</div>
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<label for="discount">Giảm giá</label>
+							<p:inputNumber id="discount" value="#{bookController.newObj.discount}" 
+								maxValue="100" minValue="0" symbol="%" symbolPosition="s"
+								styleClass="p-12" />
+							<p:messages for="discount" />
+						</div>
+						<div class="p-field p-col">
+							<label for="isActive">Trạng thái</label>
+							<p:selectOneMenu id="isActive"
+								value="#{bookController.newObj.isActive}"
+								styleClass="ui-grid-col-12">
+								<f:selectItems var="status" value="#{statusController.status}"
+									itemValue="#{status.key}" itemLabel="#{status.value}" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col">
+							<label for="file">Hình ảnh</label>
+							<br/>
+							<p:fileUpload id="file" value="#{bookController.newObj.file}" mode="advanced" 
+								fileUploadListener="#{bookController.fileHandleListener}"
+								required="true" requiredMessage="Phai co anh"/>
+							<p:messages for="file"/>
+						</div>
+						<div class="p-field p-col">
+							<p:inputText value="#{bookController.newObj.thumbnail}" type="hidden" readonly="true"/>
+							<p:graphicImage value="#{bookController.newObj.thumbnail}" height="100px"/>
+						</div>
+					</div>
+					
+					<div class="btn-save-and-search">
+						<p:commandButton value="Thêm mới" class="p-mt-4 p-mr-2"
+							disabled="#{bookController.isEdit}"
+							action="#{bookController.saveOrUpdate}"
+							update=":insertEditForm:pnlInfo, :insertEditForm:mainMessage" />
+							
+						<p:commandButton value="Cập nhật" class="p-mt-4 p-mr-2"
+							disabled="#{!bookController.isEdit}"
+							action="#{bookController.saveOrUpdate}"
+							update=":insertEditForm:pnlInfo, :insertEditForm:mainMessage" />
+							
+						<p:commandButton value="Đóng" process="@this"
+							onclick="PF('dlgInfor').hide()"
+							action="bookController.clear()" />
+					</div>
+				</p:panel>
+			</p:dialog>
+		</h:form>
+		
+		<div class="col-12 col-sm-12 col-md-12 col-lg-9 min-vh-100 content-right">
+             <div class="list-item ml-2 mr-2 mt-2">
+             	 <div class="mt-2 mb-2">
+					<h:form id="search">
+						<p:panel header="Tìm kiếm" toggleable="true" styleClass="p-0">
+							<!-- <div class="ui-g">
+								<div class="ui-g-2">
+									<p:outputLabel value="Tên danh mục" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{categoryController.searchObj.name}" />
+								</div>
+
+								<div class="ui-g-2">
+									<p:outputLabel value="Trạng thái" />
+								</div>
+								<div class="ui-g-4">
+									<p:inputText value="#{categoryController.searchObj.isActive}" />
+								</div>
+							</div> -->
+
+							<div class="ui-g">
+								<p:commandButton id="cmdAdd" styleClass="p-mr-3"
+									action="#{bookController.clear}" update=":insertEditForm"
+									oncomplete="PF('dlgInfor').show()" value="Thêm mới" />
+								<p:commandButton value="Tìm kiếm" class="ui-priority-primary" 
+									actionListener="#{bookController.search}" update=":form:objectTable"/>
+							</div>
+						</p:panel>
+
+					</h:form>
+				 </div>
+                 <h2 class="title-crud text-center text-primary">Danh sách sách</h2>
+                 <div class="table-all table-responsive" style="background-color: #fff;">
+                 	<h:form id="form">
+                 		<p:dataTable var="book" value="#{bookController.lazyDataModel}" lazy="true"
+        							 paginator="true" rows="5" rowsPerPageTemplate="5,10,15" rowKey="book.id" paginatorPosition="bottom"
+        							 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        							 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" 
+        							 id="objectTable">
+				            <p:column headerText="Mã" width="5%" class="p-text-center">
+				                <h:outputText value="#{book.id}" />
+				            </p:column>
+				            
+				            <p:column headerText="Tên">
+				                <h:outputText value="#{book.title}" />
+				            </p:column>
+
+				            <p:column headerText="Ảnh" class="p-text-center">
+				                <h:graphicImage value="#{book.thumbnail}" width="80px" />
+				            </p:column>
+				
+				            <p:column headerText="Thể loại" class="p-text-center">
+				                <h:outputText value="#{book.category.name}" />
+				            </p:column>
+				            
+				            <p:column headerText="Giá" class="p-text-center">
+				                <h:outputText value="#{book.price}" />
+				            </p:column>
+				            
+				            <p:column headerText="Giảm giá" class="p-text-center" width="10%">
+				                <h:outputText value="#{book.discount}" />
+				            </p:column>
+				            
+				            <p:column headerText="Trạng thái" class="p-text-center" width="10%">
+				                <h:outputText value="#{book.isActive}" />
+				            </p:column>
+				            
+				            <p:column headerText="Cập nhật" width="10%" class="p-text-center">
+				                <p:commandLink id="cmdEdit" 
+				                	action="#{bookController.prepareEdit}"
+				                	update=":insertEditForm" oncomplete="PF('dlgInfor').show()">
+				                	<p:resetInput target=":insertEditForm" />
+				                	<f:setPropertyActionListener value="#{book}" target="#{bookController.selectedObj}"/>
+				                	<i class="fa fa-fw fa-edit" style="color: red;"></i>
+				                </p:commandLink>
+				            </p:column>
+				            
+				            <p:column headerText="Xóa" width="10%" class="p-text-center">
+				                <h:outputText value="Xóa"/>
+				            </p:column>
+				        </p:dataTable>
+                 	</h:form>
+                 </div>
+             </div>
+         </div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<ui:insert name="title">
+		<title></title>
+	</ui:insert>
+	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+	<h:outputStylesheet name="ustyle.css" library="css" />
+	<h:outputStylesheet name="css/all.min.css" library="icon" />
+	<h:outputScript name="jsjquery.js" library="js" />
+	<h:outputScript name="popper.min.js" library="js" />
+	<h:outputScript name="querySlim.js" library="js" />
+	<h:outputScript name="bootstrap.min.js" library="js" />
+</h:head>
+
+<h:body>
+
+	<ui:insert name="header">
+		<ui:include src="header.xhtml"></ui:include>
+	</ui:insert>
+
+	<ui:insert name="content">
+		<ui:include src="content.xhtml"></ui:include>
+	</ui:insert>
+
+	<ui:insert name="footer">
+		<ui:include src="footer.xhtml"></ui:include>
+	</ui:insert>
+
+</h:body>
+
+</html>

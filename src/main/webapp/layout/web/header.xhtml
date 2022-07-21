@@ -1,0 +1,146 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<header class="header">
+		<div
+			class="container header-desktop d-none d-sm-none d-md-none d-lg-block">
+			<!-- Desktop start -->
+			<div class="nav justify-content-between">
+				<a class="navbar-brand" href=""> <img src="" alt="logo"
+					class="img-logo" style="" />
+				</a>
+				<form class="form-group w-25 d-md-none d-sm-none d-lg-block">
+					<div class="position-relative w-100">
+						<input class="form-control form-search w-100" type="text"
+							placeholder="Tìm kiếm sản phẩm" aria-label="Search" />
+						<button class="btn-search btn btn-success position-absolute"
+							type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</form>
+
+				<ul class="nav m-0 p-0">
+					<li class="nav-item d-inline-block"><a class="nav-link"
+						href=""> <i class="fas fa-shopping-cart"></i> <span class="">Giỏ
+								hàng</span>
+					</a></li>
+					<li class="nav-item d-inline-block"><a class="nav-link"
+						href=""> <i class="fas fa-money-check-alt"></i> <span class="">Thanh
+								toán</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-sign-in-alt"></i> <span class="">Đăng nhập</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-user-plus"></i> <span class="">Đăng ký</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-user-circle"></i> <span>Cuong</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-sign-out-alt"></i> <span class="">Đăng xuất</span>
+					</a></li>
+				</ul>
+			</div>
+
+			<ul class="nav m-0 p-0 justify-content-lg-center">
+				<li class="nav-item d-inline"><a class="nav-link" href="">
+						Trang chủ </a></li>
+				<li class="nav-item d-inline"><a class="nav-link" href="">
+						Nhà xuất bản </a></li>
+				<li class="nav-item d-inline"><a class="nav-link" href="">
+						Vận chuyển </a></li>
+				<li class="nav-item d-inline"><a class="nav-link" href="">
+						Chính sách cửa hàng </a></li>
+			</ul>
+		</div>
+		<!-- Desktop end -->
+
+		<!-- Mobile start -->
+		<div class="container-fluid header-mobile d-md-block d-lg-none">
+			<div class="justify-content-center d-flex">
+				<a class="navbar-brand" href=""> <img src="" alt="logo"
+					class="img-logo" style="" />
+				</a>
+			</div>
+			<nav class="navbar navbar-expand-lg">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbar-content">
+					<i class="fas fa-bars"></i>
+				</button>
+				<div class="d-none d-sm-none d-md-block" style="">
+					<form class="form-inline">
+						<div class="position-relative">
+							<input class="form-control" type="search"
+								placeholder="Tìm kiếm sản phẩm" aria-label="Search" />
+							<button class="btn-search btn btn-success position-absolute"
+								type="submit">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</form>
+				</div>
+				<ul class="d-flex m-0 p-0">
+					<li class="nav-item d-inline"><a class="nav-link" href="">
+							<i class="fas fa-shopping-cart"></i>
+					</a></li>
+					<li class="nav-item d-inline"><a class="nav-link" href="">
+							<i class="fas fa-money-check-alt"></i>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-sign-in-alt"></i>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-user-plus"></i>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-user"></i>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href=""> <i
+							class="fas fa-sign-out-alt"></i>
+					</a></li>
+				</ul>
+
+				<div class="collapse navbar-collapse" id="navbar-content">
+					<div class="w-100 d-md-none">
+						<form class="form-inline w-100">
+							<div class="position-relative w-100">
+								<input class="form-control w-100" type="search"
+									placeholder="Tìm kiếm sản phẩm" aria-label="Search" />
+								<button class="btn-search btn btn-success position-absolute"
+									type="submit">
+									<i class="fas fa-search"></i>
+								</button>
+							</div>
+						</form>
+					</div>
+					<div class="dropdown-divider"></div>
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="">Trang
+								chủ</a></li>
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Danh Mục Sản Phẩm </a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href=""></a>
+								<div class="dropdown-divider"></div>
+							</div></li>
+						<li class="nav-item dropdown"><a class="nav-link" href="">Nhà
+								xuất bản</a></li>
+						<li class="nav-item"><a class="nav-link" href="">Vận
+								chuyển</a></li>
+						<li class="nav-item"><a class="nav-link" href="">Chính
+								sách cửa hàng</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- Mobile end -->
+	</header>
+
+</ui:composition>
